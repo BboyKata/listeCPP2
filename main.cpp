@@ -17,10 +17,15 @@ void initLista(){
     cout<<endl<<"|||| LISTA CREATA ||||"<<endl;
 }
 
-void headAdd(){
+void headAdd(int x = 0, int v = 0){
     nodo *nuovoP = new nodo;
-    cout<<"Inserisci il valore del nodo da aggiungere in testa: ";
-    cin>>nuovoP->x;
+    if(x != 0){
+        cout<<"Inserisci il valore del nodo da aggiungere in testa: ";
+        cin>>nuovoP->x;
+    } else {
+        nuovoP->x=v;
+    }
+
     nuovoP->next = NULL;
     if(T == NULL){
         T = nuovoP;
@@ -29,13 +34,19 @@ void headAdd(){
         nuovoP->next = T;
         T = nuovoP;
     }
-    cout<<endl<<"|||| NODO AGGIUNTO IN TESTA ||||"<<endl;
+    if( x != 0){
+        cout<<endl<<"|||| NODO AGGIUNTO IN TESTA ||||"<<endl;
+    }
 }
 
-void tailAdd(){
+void tailAdd(int x = 0, int v = 0){
     nodo *nuovoP = new nodo;
-    cout<<"Inserisci il valore del nodo da aggiungere in coda: ";
-    cin>>nuovoP->x;
+    if(x != 0){
+        cout<<"Inserisci il valore del nodo da aggiungere in coda: ";
+        cin>>nuovoP->x;
+    } else {
+        nuovoP->x = v;
+    }
     nuovoP->next = NULL;
     if(T == NULL){
         T = nuovoP;
@@ -45,7 +56,9 @@ void tailAdd(){
         coda->next = nuovoP;
         coda = nuovoP;
     }
-    cout<<endl<<"|||| NODO AGGIUNTO IN TESTA ||||"<<endl;
+    if(x != 0){
+        cout<<endl<<"|||| NODO AGGIUNTO IN CODA ||||"<<endl;
+    }
 }
 
 void stampaLista(){
@@ -58,6 +71,15 @@ void stampaLista(){
         counter++;
     }
     cout<<endl;
+}
+
+void faiUnPoTu(){
+    initLista();
+    for(int i=0; i < 10; i++){
+        tailAdd(0,i);
+        headAdd(0,i);
+    }
+    stampaLista();
 }
 
 int main()
@@ -76,13 +98,16 @@ int main()
                 initLista();
                 break;
             case 2:
-                headAdd();
+                headAdd(1);
                 break;
             case 3:
-                tailAdd();
+                tailAdd(1);
                 break;
             case 4:
                 stampaLista();
+                break;
+            case 5:
+                faiUnPoTu();
                 break;
             default:
                 cout<<"Errore, reinserire la scelta."<<endl;
